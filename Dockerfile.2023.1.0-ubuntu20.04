@@ -44,14 +44,14 @@
 #
 ARG DEBIAN_FRONTEND=noninteractive
 ARG BASE_DIST=ubuntu20.04
-ARG CUDA_VERSION=11.4.2
+ARG CUDA_VERSION=11.3.1
 ARG ISAACSIM_VERSION=2023.1.0
 
 # https://catalog.ngc.nvidia.com/orgs/nvidia/containers/isaac-sim
 FROM nvcr.io/nvidia/isaac-sim:${ISAACSIM_VERSION} as isaac-sim
 
 # https://catalog.ngc.nvidia.com/orgs/nvidia/containers/cudagl
-FROM nvidia/cudagl:${CUDA_VERSION}-base-${BASE_DIST}
+FROM nvidia/cudagl:${CUDA_VERSION}-devel-${BASE_DIST}
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libatomic1 \

@@ -1,5 +1,7 @@
 # Isaac Sim Dockerfiles
 
+> :warning: PRL version - use `make build` and `make run` to use the version compatible with Curobo (CUDA 11.3).
+
 ## Introduction
 
 This repository contains Dockerfiles for building an Isaac Sim container.
