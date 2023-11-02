@@ -5,10 +5,10 @@ build-2022:
 	docker build --pull -t personalroboticsimperial/prl:ub2004-cu113-isaacsim2022 --build-arg ISAACSIM_VERSION=2022.2.1 --file Dockerfile.2022.2.1-ubuntu20.04 .
 
 
-run-2022: ISAAC_IMG=personalroboticsimperial/prl:ub2004-cu113-isaacsim2022
+run-2022: ISAAC_YEAR=2022
 run-2022: _run
 
-run-2023: ISAAC_IMG=personalroboticsimperial/prl:ub2004-cu113-isaacsim2023
+run-2023: ISAAC_YEAR=2023
 run-2023: _run
 
 _run:
@@ -17,16 +17,23 @@ _run:
   		-e "PRIVACY_CONSENT=Y" \
   		-v $$HOME/.Xauthority:/root/.Xauthority \
   		-e DISPLAY \
-  		-v ~/docker/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw \
-  		-v ~/docker/isaac-sim/cache/ov:/root/.cache/ov:rw \
-  		-v ~/docker/isaac-sim/cache/pip:/root/.cache/pip:rw \
-  		-v ~/docker/isaac-sim/cache/glcache:/root/.cache/nvidia/GLCache:rw \
-  		-v ~/docker/isaac-sim/cache/computecache:/root/.nv/ComputeCache:rw \
-  		-v ~/docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw \
-  		-v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw \
-  		-v ~/docker/isaac-sim/documents:/root/Documents:rw \
-  		${ISAAC_IMG} \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/cache/kit:/isaac-sim/kit/cache:rw \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/cache/ov:/root/.cache/ov:rw \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/cache/pip:/root/.cache/pip:rw \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/cache/glcache:/root/.cache/nvidia/GLCache:rw \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/cache/computecache:/root/.nv/ComputeCache:rw \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/logs:/root/.nvidia-omniverse/logs:rw \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/data:/root/.local/share/ov/data:rw \
+  		-v ~/docker/isaac-sim/${ISAAC_YEAR}/documents:/root/Documents:rw \
+  		personalroboticsimperial/prl:ub2004-cu113-isaacsim${ISAAC_YEAR} \
   		./runapp.sh
 
-push:
-	docker push personalroboticsimperial/prl:ub2004-cu113-isaacsim2023
+_push:
+	docker push ${ISAAC_YEAR}
+
+
+push-2022: ISAAC_YEAR=2022
+push-2022: _push
+
+push-2023: ISAAC_YEAR=2023
+push-2023: _push
