@@ -1,6 +1,6 @@
 # Isaac Sim Dockerfiles
 
-> :warning: PRL version - use `make build` and `make run` to use the version compatible with Curobo (CUDA 11.3).
+> :warning: PRL version - use `make build-2022` and `make run-2022` to use the version compatible with Curobo (2022.2.1, CUDA 11.3).
 
 ## Introduction
 
