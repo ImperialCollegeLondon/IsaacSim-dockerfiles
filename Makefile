@@ -1,5 +1,9 @@
 build:
-	docker build --pull -t personalroboticsimperial/prl:ub2004-cu1143-isaacsim2023 --build-arg ISAACSIM_VERSION=2023.1.0 --file Dockerfile.2023.1.0-ubuntu20.04 .
+	docker build --pull -t personalroboticsimperial/prl:ub2004-cu113-isaacsim2023 --build-arg ISAACSIM_VERSION=2023.1.0 --file Dockerfile.2023.1.0-ubuntu20.04 .
+
+build-2022:
+	docker build --pull -t personalroboticsimperial/prl:ub2004-cu113-isaacsim2022 --build-arg ISAACSIM_VERSION=2022.2.1 --file Dockerfile.2022.2.1-ubuntu20.04 .
+
 
 run:
 	xhost +
@@ -16,8 +20,8 @@ run:
   		-v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw \
   		-v ~/docker/isaac-sim/documents:/root/Documents:rw \
 		-v /home/cedric/repos/curobo_ros:/root/curobo_ros \
-  		personalroboticsimperial/prl:ub2004-cu1143-isaacsim2023 \
+  		personalroboticsimperial/prl:ub2004-cu113-isaacsim2023 \
   		./runapp.sh
 
 push:
-	docker push personalroboticsimperial/prl:ub2004-cu1143-isaacsim2023
+	docker push personalroboticsimperial/prl:ub2004-cu113-isaacsim2023
